@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mega Store - Sua loja online com os melhores produtos. Atividade pratica de JavaScript.">
+    <title>Mega Store - Inicio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Script para carregar tema salvo ANTES do render -->
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header class="glass-header">
+        <div class="logo">
+            Mega<span>Store</span>
+        </div>
+        <nav>
+            <a href="index.html" class="active" id="nav-home">Inicio</a>
+            <a href="catalogo.html" id="nav-catalog">Catalogo</a>
+            <button 
+                id="theme-toggle" 
+                class="btn-theme" 
+                aria-label="Alternar Tema"
+                onclick="if(typeof toggleTheme === 'function') toggleTheme()"
+            >
+                <!-- Icone sol/lua sera alternado via JS -->
+                <span id="theme-icon">🌙</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Descubra Produtos Incriveis</h1>
+                <p>
+                    Explore nossa selecao exclusiva de produtos com os melhores precos. 
+                    Tecnologia, moda, beleza e muito mais em um so lugar.
+                </p>
+                <a href="catalogo.html" class="btn-primary" id="hero-cta">
+                    Explorar Catalogo
+                </a>
+            </div>
+        </section>
+
+        <!-- Produtos em Destaque -->
+        <section class="featured-section">
+            <div class="section-header">
+                <h2>Produtos em Destaque</h2>
+                <a href="catalogo.html" class="btn-secondary">Ver Todos</a>
+            </div>
+            
+            <!-- 
+                CONTAINER DOS PRODUTOS EM DESTAQUE
+                O JavaScript deve preencher este container com os cards dos produtos.
+                Use o ID "featured-products" para selecionar este elemento.
+            -->
+            <div id="featured-products" class="products-grid">
+                
+                <!-- PLACEHOLDER CARD 1 - Remover quando carregar dados da API -->
+                <article class="product-card placeholder-card">
+                    <div class="product-card-img">
+                        <div class="skeleton skeleton-card"></div>
+                    </div>
+                    <div class="product-card-content">
+                        <div class="skeleton skeleton-text short"></div>
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton skeleton-text"></div>
+                    </div>
+                </article>
+
+                <!-- PLACEHOLDER CARD 2 -->
+                <article class="product-card placeholder-card">
+                    <div class="product-card-img">
+                        <div class="skeleton skeleton-card"></div>
+                    </div>
+                    <div class="product-card-content">
+                        <div class="skeleton skeleton-text short"></div>
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton skeleton-text"></div>
+                    </div>
+                </article>
+
+                <!-- PLACEHOLDER CARD 3 -->
+                <article class="product-card placeholder-card">
+                    <div class="product-card-img">
+                        <div class="skeleton skeleton-card"></div>
+                    </div>
+                    <div class="product-card-content">
+                        <div class="skeleton skeleton-text short"></div>
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton skeleton-text"></div>
+                    </div>
+                </article>
+
+                <!-- PLACEHOLDER CARD 4 -->
+                <article class="product-card placeholder-card">
+                    <div class="product-card-img">
+                        <div class="skeleton skeleton-card"></div>
+                    </div>
+                    <div class="product-card-content">
+                        <div class="skeleton skeleton-text short"></div>
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton skeleton-text"></div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Categorias Populares -->
+        <section class="featured-section">
+            <div class="section-header">
+                <h2>Categorias Populares</h2>
+            </div>
+            
+            <!-- 
+                CONTAINER DAS CATEGORIAS
+                O JavaScript deve preencher este container com as categorias.
+                Use o ID "categories-grid" para selecionar este elemento.
+            -->
+            <div id="categories-grid" class="products-grid">
+                
+                <!-- PLACEHOLDER CATEGORIA 1 -->
+                <div class="product-card placeholder-card">
+                    <div class="product-card-content" style="padding: 2rem; text-align: center;">
+                        <div class="skeleton skeleton-title" style="margin: 0 auto;"></div>
+                    </div>
+                </div>
+
+                <!-- PLACEHOLDER CATEGORIA 2 -->
+                <div class="product-card placeholder-card">
+                    <div class="product-card-content" style="padding: 2rem; text-align: center;">
+                        <div class="skeleton skeleton-title" style="margin: 0 auto;"></div>
+                    </div>
+                </div>
+
+                <!-- PLACEHOLDER CATEGORIA 3 -->
+                <div class="product-card placeholder-card">
+                    <div class="product-card-content" style="padding: 2rem; text-align: center;">
+                        <div class="skeleton skeleton-title" style="margin: 0 auto;"></div>
+                    </div>
+                </div>
+
+                <!-- PLACEHOLDER CATEGORIA 4 -->
+                <div class="product-card placeholder-card">
+                    <div class="product-card-content" style="padding: 2rem; text-align: center;">
+                        <div class="skeleton skeleton-title" style="margin: 0 auto;"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>&copy; 2026 Mega Store - Atividade Pratica JavaScript (DummyJSON API)</p>
+    </footer>
+
+    <!-- 
+        =====================================================
+        SCRIPT - Voce deve criar o arquivo app.js
+        =====================================================
+        
+        FUNCOES QUE VOCE PRECISA IMPLEMENTAR:
+        
+        1. toggleTheme() - Alternar entre tema claro e escuro
+           - Trocar o atributo data-theme do <html>
+           - Salvar preferencia no localStorage
+           - Atualizar icone do botao
+        
+        2. loadFeaturedProducts() - Carregar produtos em destaque
+           - Fazer fetch para: https://dummyjson.com/products?limit=4
+           - Renderizar os cards no #featured-products
+        
+        3. loadCategories() - Carregar categorias populares
+           - Fazer fetch para: https://dummyjson.com/products/categories
+           - Renderizar no #categories-grid (apenas 4-6 categorias)
+        
+        4. renderProductCard(product) - Criar HTML do card do produto
+           - Usar os dados: title, price, thumbnail, category, rating, discountPercentage
+           - Incluir link para detalhes.html?id={product.id}
+        
+        =====================================================
+    -->
+    <script src="script.js"></script>
+</body>
+</html>

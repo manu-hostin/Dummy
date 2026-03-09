@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detalhes do produto - Mega Store">
+    <title>Mega Store - Detalhes do Produto</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header class="glass-header">
+        <div class="logo">
+            Mega<span>Store</span>
+        </div>
+        <nav>
+            <a href="index.html" id="nav-home">Inicio</a>
+            <a href="catalogo.html" id="nav-catalog">Catalogo</a>
+            <button 
+                id="theme-toggle" 
+                class="btn-theme" 
+                aria-label="Alternar Tema"
+                onclick="if(typeof toggleTheme === 'function') toggleTheme()"
+            >
+                <span id="theme-icon">🌙</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main class="page-content">
+        <!-- Link para voltar -->
+        <a href="catalogo.html" class="back-link">
+            ← Voltar para o Catalogo
+        </a>
+
+        <!-- 
+            CONTAINER DE DETALHES DO PRODUTO
+            O JavaScript deve preencher este container com os dados do produto.
+            Use o ID "product-detail" para selecionar este elemento.
+        -->
+        <div id="product-detail" class="detail-container">
+            
+            <!-- ===== GALERIA DE IMAGENS ===== -->
+            <div class="detail-gallery">
+                <!-- 
+                    IMAGEM PRINCIPAL
+                    Usar o ID "main-image" para trocar a imagem ao clicar nas thumbnails.
+                -->
+                <div class="detail-main-img">
+                    <img 
+                        id="main-image" 
+                        src="https://placehold.co/600x600/1e293b/f59e0b?text=Carregando" 
+                        alt="Imagem do produto"
+                    >
+                </div>
+                
+                <!-- 
+                    THUMBNAILS
+                    Usar o ID "thumbnails-container" para inserir as imagens miniatura.
+                    Ao clicar em uma thumbnail, trocar a imagem principal.
+                -->
+                <div id="thumbnails-container" class="detail-thumbnails">
+                    <div class="detail-thumb skeleton"></div>
+                    <div class="detail-thumb skeleton"></div>
+                    <div class="detail-thumb skeleton"></div>
+                </div>
+            </div>
+
+            <!-- ===== INFORMACOES DO PRODUTO ===== -->
+            <div class="detail-info">
+                <!-- Categoria -->
+                <span id="detail-category" class="detail-category">Carregando...</span>
+                
+                <!-- Marca -->
+                <span id="detail-brand" class="detail-brand">Marca: Carregando...</span>
+                
+                <!-- Titulo -->
+                <h1 id="detail-title" class="detail-title">Carregando produto...</h1>
+                
+                <!-- Rating -->
+                <div class="detail-rating">
+                    <div id="detail-stars" class="stars">
+                        <!-- Estrelas serao inseridas via JavaScript -->
+                        <span class="skeleton" style="width: 120px; height: 24px;"></span>
+                    </div>
+                    <span id="detail-rating-text" class="detail-rating-text">-- avaliacao</span>
+                </div>
+                
+                <!-- Precos -->
+                <div class="detail-prices">
+                    <span id="detail-price" class="detail-price-current">R$ 0,00</span>
+                    <span id="detail-original-price" class="detail-price-original hidden">R$ 0,00</span>
+                    <span id="detail-discount" class="detail-discount hidden">-0%</span>
+                </div>
+                
+                <!-- Descricao -->
+                <p id="detail-description" class="detail-description">
+                    Carregando descricao do produto...
+                </p>
+                
+                <!-- Informacoes Adicionais -->
+                <div class="detail-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Estoque</span>
+                        <span id="detail-stock" class="meta-value">--</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Status</span>
+                        <span id="detail-availability" class="meta-value">--</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">SKU</span>
+                        <span id="detail-sku" class="meta-value">--</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Garantia</span>
+                        <span id="detail-warranty" class="meta-value">--</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Envio</span>
+                        <span id="detail-shipping" class="meta-value">--</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Devolucao</span>
+                        <span id="detail-return" class="meta-value">--</span>
+                    </div>
+                </div>
+                
+                <!-- Botoes de Acao -->
+                <div class="detail-actions">
+                    <button id="btn-add-cart" class="btn-primary" disabled>
+                        Adicionar ao Carrinho
+                    </button>
+                    <button id="btn-buy-now" class="btn-secondary" disabled>
+                        Comprar Agora
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 
+            SECAO DE REVIEWS
+            O JavaScript deve preencher esta secao com os reviews do produto.
+        -->
+        <section class="reviews-section">
+            <h3>Avaliações dos Clientes</h3>
+            
+            <!-- 
+                LISTA DE REVIEWS
+                Usar o ID "reviews-list" para inserir os reviews.
+            -->
+            <div id="reviews-list" class="reviews-list">
+                <!-- PLACEHOLDER REVIEW 1 -->
+                <div class="review-card placeholder-card">
+                    <div class="review-header">
+                        <div class="skeleton skeleton-text" style="width: 150px;"></div>
+                        <div class="skeleton skeleton-text" style="width: 100px;"></div>
+                    </div>
+                    <div class="skeleton skeleton-text"></div>
+                    <div class="skeleton skeleton-text short"></div>
+                </div>
+
+                <!-- PLACEHOLDER REVIEW 2 -->
+                <div class="review-card placeholder-card">
+                    <div class="review-header">
+                        <div class="skeleton skeleton-text" style="width: 150px;"></div>
+                        <div class="skeleton skeleton-text" style="width: 100px;"></div>
+                    </div>
+                    <div class="skeleton skeleton-text"></div>
+                    <div class="skeleton skeleton-text short"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+            ESTADO DE LOADING
+            Mostrar enquanto carrega os dados do produto.
+        -->
+        <div id="loading-state" class="loading-container hidden">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Carregando detalhes do produto...</p>
+        </div>
+
+        <!-- 
+            ESTADO DE ERRO
+            Mostrar quando o produto nao for encontrado ou houver erro.
+        -->
+        <div id="error-state" class="error-container hidden">
+            <div class="error-icon">⚠️</div>
+            <h3 class="error-title">Produto nao encontrado</h3>
+            <p class="error-message" id="error-message">O produto que voce procura nao existe ou foi removido.</p>
+            <a href="catalogo.html" class="btn-primary">Voltar ao Catalogo</a>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>&copy; 2026 Mega Store - Atividade Pratica JavaScript (DummyJSON API)</p>
+    </footer>
+
+    <!-- 
+        =====================================================
+        SCRIPT - Voce deve criar o arquivo app.js
+        =====================================================
+        
+        FUNCOES QUE VOCE PRECISA IMPLEMENTAR:
+        
+        1. getProductId() - Obter ID do produto da URL
+           - Usar URLSearchParams para pegar o parametro "id"
+           - Exemplo URL: detalhes.html?id=1
+        
+        2. loadProductDetails(id) - Carregar detalhes do produto
+           - Fazer fetch para: https://dummyjson.com/products/{id}
+           - Preencher todos os elementos com os dados
+           - Tratar erro se produto nao existir
+        
+        3. renderProductDetails(product) - Preencher a pagina com dados
+           - Atualizar: titulo, preco, descricao, imagens, rating, etc.
+           - Calcular preco original se tiver desconto
+           - Definir classe de status do estoque
+        
+        4. renderStars(rating) - Criar HTML das estrelas
+           - Estrelas cheias, meias e vazias baseado no rating
+           - Usar as classes: star, filled, half
+        
+        5. renderThumbnails(images) - Criar thumbnails das imagens
+           - Inserir no #thumbnails-container
+           - Adicionar evento de click para trocar imagem principal
+        
+        6. changeMainImage(imageUrl) - Trocar imagem principal
+           - Atualizar src do #main-image
+           - Atualizar classe "active" da thumbnail
+        
+        7. renderReviews(reviews) - Renderizar reviews
+           - Inserir no #reviews-list
+           - Mostrar: nome, data, rating, comentario
+        
+        8. formatPrice(price) - Formatar preco em Real
+           - Usar Intl.NumberFormat ou toLocaleString
+        
+        9. formatDate(dateString) - Formatar data
+           - Converter ISO date para formato legivel
+        
+        DADOS DO PRODUTO (exemplo):
+        {
+            id: 1,
+            title: "iPhone 9",
+            description: "An apple mobile...",
+            price: 549,
+            discountPercentage: 12.96,
+            rating: 4.69,
+            stock: 94,
+            brand: "Apple",
+            category: "smartphones",
+            thumbnail: "https://...",
+            images: ["https://...", "https://..."],
+            availabilityStatus: "In Stock",
+            sku: "ABC123",
+            warrantyInformation: "1 year",
+            shippingInformation: "Ships in 1-2 days",
+            returnPolicy: "30 days",
+            reviews: [
+                {
+                    rating: 5,
+                    comment: "Great!",
+                    date: "2024-05-23T08:56:21.618Z",
+                    reviewerName: "John Doe",
+                    reviewerEmail: "john@example.com"
+                }
+            ]
+        }
+        
+        =====================================================
+    -->
+    <script src="script.js"></script>
+</body>
+</html>

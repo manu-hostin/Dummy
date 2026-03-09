@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Catalogo completo de produtos da Mega Store. Filtre por categoria e encontre o que procura.">
+    <title>Mega Store - Catalogo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header class="glass-header">
+        <div class="logo">
+            Mega<span>Store</span>
+        </div>
+        <nav>
+            <a href="index.html" id="nav-home">Inicio</a>
+            <a href="catalogo.html" class="active" id="nav-catalog">Catalogo</a>
+            <button 
+                id="theme-toggle" 
+                class="btn-theme" 
+                aria-label="Alternar Tema"
+                onclick="if(typeof toggleTheme === 'function') toggleTheme()"
+            >
+                <span id="theme-icon">🌙</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main class="page-content">
+        <section>
+            <div class="section-header">
+                <h2>Nosso Catalogo</h2>
+            </div>
+
+            <!-- ===== FILTROS E BUSCA ===== -->
+            <div class="filters-container mb-4">
+                <!-- 
+                    CAMPO DE BUSCA
+                    Usar o ID "search-input" para capturar o valor digitado.
+                    Implementar busca ao digitar (com debounce) ou ao pressionar Enter.
+                -->
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        placeholder="Buscar produtos..."
+                        aria-label="Buscar produtos"
+                        oninput="if(typeof handleSearch === 'function') handleSearch(this.value)"
+                    >
+                </div>
+
+                <!-- 
+                    FILTRO DE CATEGORIA
+                    Usar o ID "category-filter" para capturar a categoria selecionada.
+                    As opcoes devem ser carregadas dinamicamente da API.
+                -->
+                <select 
+                    id="category-filter" 
+                    class="filter-select"
+                    aria-label="Filtrar por categoria"
+                    onchange="if(typeof filterByCategory === 'function') filterByCategory(this.value)"
+                >
+                    <option value="">Todas as Categorias</option>
+                    <!-- Opcoes serao inseridas via JavaScript -->
+                </select>
+
+                <!-- 
+                    FILTRO DE ORDENACAO
+                    Usar o ID "sort-filter" para capturar a ordenacao selecionada.
+                -->
+                <select 
+                    id="sort-filter" 
+                    class="filter-select"
+                    aria-label="Ordenar por"
+                    onchange="if(typeof sortProducts === 'function') sortProducts(this.value)"
+                >
+                    <option value="">Ordenar por</option>
+                    <option value="price-asc">Menor Preco</option>
+                    <option value="price-desc">Maior Preco</option>
+                    <option value="rating-desc">Melhor Avaliacao</option>
+                    <option value="title-asc">A - Z</option>
+                    <option value="title-desc">Z - A</option>
+                </select>
+            </div>
+
+            <!-- 
+                CONTAINER DOS PRODUTOS
+                O JavaScript deve preencher este container com os cards dos produtos.
+                Use o ID "products-list" para selecionar este elemento.
+            -->
+            <div id="products-list" class="products-grid">
+                
+                <!-- PLACEHOLDER CARDS - Remover quando carregar dados da API -->
+                <article class="product-card placeholder-card">
+                    <div class="product-card-img">
+                        <div class="skeleton skeleton-card"></div>
+                    </div>
+                    <div class="product-card-content">
+                        <div class="skeleton skeleton-text short"></div>
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text short"></div>
+                    </div>
+                </article>
+
+                <article class="product-card placeholder-card">
+                    <div class="product-card-img">
+                        <div class="skeleton skeleton-card"></div>
+                    </div>
+                    <div class="product-card-content">
+                        <div class="skeleton skeleton-text short"></div>
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text short"></div>
+                    </div>
+                </article>
+
+                <article class="product-card placeholder-card">
+                    <div class="product-card-img">
+                        <div class="skeleton skeleton-card"></div>
+                    </div>
+                    <div class="product-card-content">
+                        <div class="skeleton skeleton-text short"></div>
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text short"></div>
+                    </div>
+                </article>
+
+                <article class="product-card placeholder-card">
+                    <div class="product-card-img">
+                        <div class="skeleton skeleton-card"></div>
+                    </div>
+                    <div class="product-card-content">
+                        <div class="skeleton skeleton-text short"></div>
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text short"></div>
+                    </div>
+                </article>
+
+                <article class="product-card placeholder-card">
+                    <div class="product-card-img">
+                        <div class="skeleton skeleton-card"></div>
+                    </div>
+                    <div class="product-card-content">
+                        <div class="skeleton skeleton-text short"></div>
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text short"></div>
+                    </div>
+                </article>
+
+                <article class="product-card placeholder-card">
+                    <div class="product-card-img">
+                        <div class="skeleton skeleton-card"></div>
+                    </div>
+                    <div class="product-card-content">
+                        <div class="skeleton skeleton-text short"></div>
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text short"></div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- 
+                ESTADO DE LOADING
+                Mostrar enquanto a API esta carregando.
+                Use a classe "hidden" para esconder/mostrar.
+            -->
+            <div id="loading-state" class="loading-container hidden">
+                <div class="loading-spinner"></div>
+                <p class="loading-text">Carregando produtos...</p>
+            </div>
+
+            <!-- 
+                ESTADO DE ERRO
+                Mostrar quando houver erro na API.
+                Use a classe "hidden" para esconder/mostrar.
+            -->
+            <div id="error-state" class="error-container hidden">
+                <div class="error-icon">⚠️</div>
+                <h3 class="error-title">Ops! Algo deu errado</h3>
+                <p class="error-message" id="error-message">Nao foi possivel carregar os produtos.</p>
+                <button class="btn-primary" onclick="if(typeof loadProducts === 'function') loadProducts()">
+                    Tentar Novamente
+                </button>
+            </div>
+
+            <!-- 
+                ESTADO VAZIO (sem resultados)
+                Mostrar quando a busca/filtro nao retornar produtos.
+                Use a classe "hidden" para esconder/mostrar.
+            -->
+            <div id="empty-state" class="empty-container hidden">
+                <div class="empty-icon">🔍</div>
+                <h3 class="empty-title">Nenhum produto encontrado</h3>
+                <p class="empty-message">Tente ajustar os filtros ou buscar por outro termo.</p>
+                <button class="btn-secondary" onclick="if(typeof clearFilters === 'function') clearFilters()">
+                    Limpar Filtros
+                </button>
+            </div>
+
+            <!-- 
+                PAGINACAO (BONUS)
+                Implementar paginacao usando limit e skip da API.
+            -->
+            <div id="pagination" class="pagination-container hidden mt-4" style="display: flex; justify-content: center; gap: 0.5rem;">
+                <!-- Botoes de paginacao serao inseridos via JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>&copy; 2026 Mega Store - Atividade Pratica JavaScript (DummyJSON API)</p>
+    </footer>
+
+    <!-- 
+        =====================================================
+        SCRIPT - Voce deve criar o arquivo app.js
+        =====================================================
+        
+        FUNCOES QUE VOCE PRECISA IMPLEMENTAR:
+        
+        1. loadProducts() - Carregar todos os produtos
+           - Fazer fetch para: https://dummyjson.com/products
+           - Renderizar os cards no #products-list
+           - Tratar estados de loading, erro e vazio
+        
+        2. loadCategories() - Carregar categorias no select
+           - Fazer fetch para: https://dummyjson.com/products/categories
+           - Popular o <select> com as opcoes
+        
+        3. handleSearch(query) - Buscar produtos
+           - Fazer fetch para: https://dummyjson.com/products/search?q={query}
+           - Usar debounce para evitar muitas requisicoes
+        
+        4. filterByCategory(category) - Filtrar por categoria
+           - Fazer fetch para: https://dummyjson.com/products/category/{category}
+           - Se category vazio, carregar todos os produtos
+        
+        5. sortProducts(sortBy) - Ordenar produtos
+           - Fazer fetch com parametros sortBy e order
+           - Exemplo: https://dummyjson.com/products?sortBy=price&order=asc
+        
+        6. clearFilters() - Limpar todos os filtros
+           - Resetar valores dos inputs/selects
+           - Recarregar todos os produtos
+        
+        7. renderProductCard(product) - Criar HTML do card
+           - Incluir: thumbnail, title, brand, category, price, rating, discount
+           - Calcular preco original se tiver desconto
+           - Link para detalhes.html?id={product.id}
+        
+        8. showLoading() / hideLoading() - Controlar estado de loading
+        
+        9. showError(message) - Mostrar mensagem de erro
+        
+        10. showEmpty() - Mostrar estado vazio
+        
+        BONUS:
+        - Implementar paginacao com limit/skip
+        - Implementar debounce na busca
+        - Salvar filtros na URL (query params)
+        
+        =====================================================
+    -->
+    <script src="script.js"></script>
+</body>
+</html>
