@@ -245,7 +245,7 @@ async function loadCategories () {
 }
 
 // Filtrar por categorias
-async function filterByCategory(categoriaEscolhida) {
+async function filterByCategory (categoriaEscolhida) {
     try {
 
         const url = await fetch(`https://dummyjson.com/products/category/${categoriaEscolhida}`);
@@ -258,6 +258,7 @@ async function filterByCategory(categoriaEscolhida) {
             return;
 
         } else {
+
             listaProdutos.innerHTML = "";
 
             dados.products.forEach(element => {
@@ -301,7 +302,7 @@ async function filterByCategory(categoriaEscolhida) {
 // FUNÇÃO DE PESQUISA
 let searchTimeout;
 
-async function handleSearch(query) {
+async function handleSearch (query) {
     clearTimeout(searchTimeout);
 
     // Se a barra de pesquisa ficar vazia, recarrega a SUA função de produtos
@@ -355,6 +356,76 @@ async function handleSearch(query) {
         }
     }, 300);
 }
+
+async function sortProducts () {
+    try {
+        
+        const select = document.getElementById("sort-filter");
+        let lista = document.getElementById("products-list");
+
+
+        select.addEventListener("change", async () => {
+
+            let URL = "";
+
+            if (select.value === "price-asc"){
+                URL = `https://dummyjson.com/products?sortBy=price&order=asc`
+
+            } else if (select.value === "price-desc") {
+                URL = `https://dummyjson.com/products?sortBy=price&order=desc`
+
+            } else if (select.value === "rating-desc") {
+                URL = `https://dummyjson.com/products?sortBy=rating&order=desc`
+
+            } else if (select.value === "title-asc") {
+                URL = `https://dummyjson.com/products?sortBy=title&order=asc`
+
+            } else if (select.value === "title-desc"){
+                URL = `https://dummyjson.com/products?sortBy=title&order=desc`
+
+            }
+
+            lista.innerHTML = "";
+            const url = await fetch(URL);
+            const dados = await url.json();
+
+            dados.products.forEach(element => {
+                lista.innerHTML += `
+                <article class="product-card">
+                <div class="product-card-img">
+                    <img src="${element.thumbnail}" alt="${element.title}">
+                    <span class="badge badge-discount">-${element.discountPercentage}%</span>
+                    <span class="badge badge-stock in-stock">Em estoque</span>
+                </div>
+
+                <div class="product-card-content">
+                    <span class="product-card-category">${element.category}</span>
+                    <span class="product-card-brand">Marca: ${element.brand}</span>
+                    <h3 class="product-card-title">${element.title}</h3>
+
+                    <div class="product-card-rating">
+                        <span class="rating-value">${element.rating}</span>
+                    </div>
+
+                    <div class="product-card-footer">
+                        <div class="product-card-prices">
+                            <span class="price-current">R$ ${element.price}</span>
+                        </div>
+
+                        <a href="detalhes.html?id=${element.id}" class="btn-primary btn-small">Ver</a>
+                    </div>
+                </div>
+            </article>
+            `
+            })
+        })
+
+
+    } catch (error) {
+        console.log (error)
+    }
+}
+sortProducts()
 
 // FUNÇÃO DE AVALIAÇÕES (TAREFA 11)
 function renderReviews(reviews) {
